@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using eTickets.Data;
+using eTickets.Data.Services;
+using eTickets.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets
@@ -26,6 +28,9 @@ namespace eTickets
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
+            //Services
+            services.AddScoped<IActorsService, ActorsService>();
+            services.AddScoped<IProducersService, ProducersService>();
             services.AddControllersWithViews();
         }
 
